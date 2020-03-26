@@ -11,6 +11,9 @@ import java.util.UUID;
 import static org.junit.Assert.*;
 
 public class ApiTest {
+
+    // Of course those client Ids and Secrets are pretty useless.
+
     @Test
     public void QueryByName() throws IOException {
         AccessToken accessToken = ApiQuerier.authenticate("a38276b6-e389-4502-a665-cbe036ae9f5c", "XPLwUmX8VngOU6ldueKL6hYV9WNHD7L9");
