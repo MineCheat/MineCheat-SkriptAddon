@@ -15,7 +15,7 @@ public class ExprPaginatedSearchType extends SimplePropertyExpression<PaginatedG
 
     @Override
     public String convert(PaginatedGroupRecord paginatedGroupRecord) {
-        return paginatedGroupRecord.getSearchType() == 1 ? "username" : paginatedGroupRecord.getSearchType() == 2 ? "nickname" : "unknown";
+        return paginatedGroupRecord.getSearchType() == 1 ? "username" : paginatedGroupRecord.getSearchType() == 2 ? "uuid" : "unknown";
     }
 
     @Override

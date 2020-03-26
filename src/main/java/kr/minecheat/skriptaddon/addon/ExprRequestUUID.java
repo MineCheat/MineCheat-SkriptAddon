@@ -51,7 +51,7 @@ public class ExprRequestUUID extends SimpleExpression<PaginatedGroupRecord> {
 
     @Override
     public boolean isSingle() {
-        return false;
+        return uuid.isSingle();
     }
 
     @Override

@@ -50,7 +50,7 @@ public class ExprRequestNickname extends SimpleExpression<PaginatedGroupRecord> 
 
     @Override
     public boolean isSingle() {
-        return false;
+        return nickname.isSingle();
     }
 
     @Override

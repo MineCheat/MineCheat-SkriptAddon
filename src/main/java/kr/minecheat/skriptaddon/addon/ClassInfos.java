@@ -17,9 +17,9 @@ import java.util.UUID;
 
 public class ClassInfos {
     static {
-        Classes.registerClass(new ClassInfo<>(AccessToken.class, "AccessToken")
+        Classes.registerClass(new ClassInfo<>(AccessToken.class, "accesstoken")
                 .user("accesstokens?")
-                .name("AccessToken")
+                .name("accesstoken")
                 .description("Represents AccessToken retrieved from MineCheat service")
                 .defaultExpression(new EventValueExpression<AccessToken>(AccessToken.class))
                 .parser(new Parser<AccessToken>() {
@@ -84,9 +84,9 @@ public class ClassInfos {
                     }
                 })
         );
-        Classes.registerClass(new ClassInfo<>(User.class, "MineCheatUser")
+        Classes.registerClass(new ClassInfo<>(User.class, "minecheatuser")
                 .user("minecheatusers?")
-                .name("MineCheatUser")
+                .name("minecheatuser")
                 .description("Represents a User on MineCheat service")
                 .defaultExpression(new EventValueExpression<User>(User.class))
                 .parser(new Parser<User>() {
@@ -154,9 +154,9 @@ public class ClassInfos {
                     }
                 })
         );
-        Classes.registerClass(new ClassInfo<>(Group.class, "MineCheatGroup")
+        Classes.registerClass(new ClassInfo<>(Group.class, "minecheatgroup")
                 .user("minecheatgroups?")
-                .name("MineCheatGroup")
+                .name("minecheatgroup")
                 .description("Represents a Group on MineCheat service")
                 .defaultExpression(new EventValueExpression<Group>(Group.class))
                 .parser(new Parser<Group>() {
@@ -219,9 +219,9 @@ public class ClassInfos {
                     }
                 })
         );
-        Classes.registerClass(new ClassInfo<>(GroupRecord.class, "MineCheatGroupRecord")
+        Classes.registerClass(new ClassInfo<>(GroupRecord.class, "minecheatgrouprecord")
                 .user("minecheatgrouprecords?")
-                .name("MineCheatGroupRecord")
+                .name("minecheatgrouprecord")
                 .description("Represents a Record on a Group on MineCheat service")
                 .defaultExpression(new EventValueExpression<GroupRecord>(GroupRecord.class))
                 .parser(new Parser<GroupRecord>() {
@@ -296,11 +296,11 @@ public class ClassInfos {
                         return false;
                     }
                 })
-                .after("MineCheatGroup", "MineCheatUser")
+                .after("minecheatgroup", "minecheatuser")
         );
-        Classes.registerClass(new ClassInfo<>(PaginatedGroupRecord.class, "PaginatedGroupRecords")
+        Classes.registerClass(new ClassInfo<>(PaginatedGroupRecord.class, "paginatedgrouprecord")
                 .user("paginatedgrouprecords?")
-                .name("PaginatedGroupRecord")
+                .name("paginatedgrouprecord")
                 .description("Represents a retrieved records from MineCheat service")
                 .defaultExpression(new EventValueExpression<PaginatedGroupRecord>(PaginatedGroupRecord.class))
                 .parser(new Parser<PaginatedGroupRecord>() {
@@ -365,7 +365,7 @@ public class ClassInfos {
                     protected boolean canBeInstantiated() {
                         return false;
                     }
-                }).after("MineCheatGroupRecord")
+                }).after("minecheatgrouprecord")
         );
     }
 }

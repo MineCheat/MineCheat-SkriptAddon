@@ -31,7 +31,7 @@ public class ApiQuerier {
         huc.getOutputStream().write("grant_type=client_credentials&scope=scope".getBytes());
 
 
-        if (huc.getResponseCode() != 200) return null;
+        if (huc.getResponseCode() != 200) throw new RuntimeException("Client Data not valid :: "+clientId+" and "+clientSecret);
 
         ObjectMapper objectMapper = MineCheatAddon.getObjectMapper();
         AccessToken accessToken = objectMapper.readValue(huc.getInputStream(), AccessToken.class);
@@ -53,6 +53,8 @@ public class ApiQuerier {
         if (huc.getResponseCode() == 200) {
             paginatedGroupRecord.getData().setSearch(username);
             paginatedGroupRecord.getData().setSearchType(1);
+        } else {
+            throw new RuntimeException("error: "+huc.getResponseCode()+" / "+paginatedGroupRecord.getError());
         }
 
         return paginatedGroupRecord;
@@ -72,6 +74,8 @@ public class ApiQuerier {
         if (huc.getResponseCode() == 200) {
             paginatedGroupRecord.getData().setSearch(uid.toString());
             paginatedGroupRecord.getData().setSearchType(2);
+        } else {
+            throw new RuntimeException("error: "+huc.getResponseCode()+" / "+paginatedGroupRecord.getError());
         }
 
         return paginatedGroupRecord;

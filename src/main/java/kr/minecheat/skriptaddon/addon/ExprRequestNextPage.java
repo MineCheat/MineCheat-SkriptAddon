@@ -53,7 +53,7 @@ public class ExprRequestNextPage extends SimpleExpression<PaginatedGroupRecord> 
 
     @Override
     public boolean isSingle() {
-        return false;
+        return previousRecords.isSingle();
     }
 
     @Override
