@@ -23,7 +23,7 @@ public class MineCheatAddon extends JavaPlugin {
     public void onEnable() {
         addon = Skript.registerAddon(this);
         try {
-            addon.loadClasses("kr.minecheat.skriptaddon.addon");
+            addon.loadClasses("kr.minecheat.skriptaddon","addon");
         } catch (IOException e) {
             e.printStackTrace();
         }

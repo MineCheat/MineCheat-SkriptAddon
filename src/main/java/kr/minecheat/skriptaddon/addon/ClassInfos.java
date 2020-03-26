@@ -7,14 +7,12 @@ import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.yggdrasil.Fields;
-import kr.minecheat.skriptaddon.data.AccessToken;
-import kr.minecheat.skriptaddon.data.Group;
-import kr.minecheat.skriptaddon.data.GroupRecord;
-import kr.minecheat.skriptaddon.data.User;
+import kr.minecheat.skriptaddon.data.*;
 
 import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class ClassInfos {
@@ -156,7 +154,7 @@ public class ClassInfos {
                     }
                 })
         );
-        Classes.registerClass(new ClassInfo<Group>(Group.class, "MineCheatGroup")
+        Classes.registerClass(new ClassInfo<>(Group.class, "MineCheatGroup")
                 .user("minecheatgroups?")
                 .name("MineCheatGroup")
                 .description("Represents a Group on MineCheat service")
@@ -221,7 +219,7 @@ public class ClassInfos {
                     }
                 })
         );
-        Classes.registerClass(new ClassInfo<GroupRecord>(GroupRecord.class, "MineCheatGroupRecord")
+        Classes.registerClass(new ClassInfo<>(GroupRecord.class, "MineCheatGroupRecord")
                 .user("minecheatgrouprecords?")
                 .name("MineCheatGroupRecord")
                 .description("Represents a Record on a Group on MineCheat service")
@@ -299,6 +297,71 @@ public class ClassInfos {
                     }
                 })
                 .after("MineCheatGroup", "MineCheatUser")
+        );
+        Classes.registerClass(new ClassInfo<>(PaginatedGroupRecord.class, "PaginatedGroupRecords")
+                .user("paginatedgrouprecords?")
+                .name("PaginatedGroupRecord")
+                .description("Represents a retrieved records from MineCheat service")
+                .defaultExpression(new EventValueExpression<PaginatedGroupRecord>(PaginatedGroupRecord.class))
+                .parser(new Parser<PaginatedGroupRecord>() {
+
+                    @Override
+                    public String toString(PaginatedGroupRecord groupRecord, int i) {
+                        return toVariableNameString(groupRecord);
+                    }
+
+                    @Override
+                    public String toVariableNameString(PaginatedGroupRecord groupRecord) {
+                        return "page:"+groupRecord.getPage()+",limit:"+groupRecord.getLimit()+",totalPages:"+groupRecord.getTotalPages()+",items_size:"+groupRecord.getItems().size();
+                    }
+
+                    @Override
+                    public boolean canParse(ParseContext context) {
+                        return false;
+                    }
+                    @Override
+                    public String getVariableNamePattern() {
+                        return "page:[0-9]+,limit:[0-9]+,totalPages:[0-9]+,items_size:[0-9]+";
+                    };
+                    @Override
+                    public PaginatedGroupRecord parse(String s, ParseContext context) {
+                        return null;
+                    }
+                }).serializer(new Serializer<PaginatedGroupRecord>() {
+                    @Override
+                    public Fields serialize(PaginatedGroupRecord paginatedGroupRecord) throws NotSerializableException {
+                        Fields fields = new Fields();
+                        fields.putPrimitive("page", paginatedGroupRecord.getPage());
+                        fields.putPrimitive("limit", paginatedGroupRecord.getLimit());
+                        fields.putPrimitive("totalPages",paginatedGroupRecord.getTotalPages());
+                        fields.putObject("items",paginatedGroupRecord.getItems());
+                        return fields;
+                    }
+
+                    public PaginatedGroupRecord deserialize(Fields fields) throws StreamCorruptedException {
+                        PaginatedGroupRecord pgr = new PaginatedGroupRecord();
+                        pgr.setPage(fields.getAndRemovePrimitive("page", Integer.class));
+                        pgr.setLimit(fields.getAndRemovePrimitive("limit", Integer.class));
+                        pgr.setTotalPages(fields.getAndRemovePrimitive("totalPages", Integer.class));
+                        pgr.setItems(fields.getAndRemoveObject("items", List.class));
+                        return pgr;
+                    }
+
+                    @Override
+                    public void deserialize(PaginatedGroupRecord paginatedGroupRecord, Fields fields) throws StreamCorruptedException, NotSerializableException {
+                        assert false;
+                    }
+
+                    @Override
+                    public boolean mustSyncDeserialization() {
+                        return false;
+                    }
+
+                    @Override
+                    protected boolean canBeInstantiated() {
+                        return false;
+                    }
+                }).after("MineCheatGroupRecord")
         );
     }
 }
