@@ -5,7 +5,6 @@ import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import com.sun.istack.internal.Nullable;
 import kr.minecheat.skriptaddon.data.GroupRecord;
 import kr.minecheat.skriptaddon.data.PaginatedGroupRecord;
 import org.bukkit.event.Event;
@@ -41,7 +40,7 @@ public class ExprPaginatedRecords extends PropertyExpression<PaginatedGroupRecor
     }
 
     @Override
-    public String toString(final @Nullable Event e, final boolean debug) {
+    public String toString(final Event e, final boolean debug) {
         return "the records of " + getExpr().toString(e, debug);
     }
 

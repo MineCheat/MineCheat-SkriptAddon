@@ -21,8 +21,8 @@
     </build>
     <repositories>
         <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>worldedit-core</id>
+            <url>http://maven.sk89q.com/repo/</url>
         </repository>
         <repository>
             <id>papermc</id>
@@ -31,6 +31,14 @@
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>heartpattern-mirror</id>
+            <url>https://maven.heartpattern.kr/repository/maven-public/</url>
         </repository>
     </repositories>
 
