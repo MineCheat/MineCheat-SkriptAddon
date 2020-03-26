@@ -1,21 +1,21 @@
-package kr.minecheat.skriptaddon.addon.record;
+package kr.minecheat.skriptaddon.addon.property;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import kr.minecheat.skriptaddon.data.GroupRecord;
 
-public class ExprRecordUUID extends SimplePropertyExpression<GroupRecord, String> {
+public class ExprRecordUsername extends SimplePropertyExpression<GroupRecord, String> {
     static {
-        register(ExprRecordUUID.class, String.class,"uuid[s]", "minecheatgrouprecords");
+        register(ExprRecordUsername.class, String.class,"username[s]", "minecheatgrouprecords");
     }
 
     @Override
     protected String getPropertyName() {
-        return "uuid";
+        return "username";
     }
 
     @Override
     public String convert(GroupRecord group) {
-        return group.getUuid() == null ? "" : group.getUuid().toString();
+        return group.getUsername();
     }
 
     @Override

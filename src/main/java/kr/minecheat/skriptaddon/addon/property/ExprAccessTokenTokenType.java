@@ -1,21 +1,21 @@
-package kr.minecheat.skriptaddon.addon.accesstoken;
+package kr.minecheat.skriptaddon.addon.property;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import kr.minecheat.skriptaddon.data.AccessToken;
 
-public class ExprAccessTokenScope extends SimplePropertyExpression<AccessToken, String> {
+public class ExprAccessTokenTokenType extends SimplePropertyExpression<AccessToken, String> {
     static {
-        register(ExprAccessTokenScope.class, String.class,"scope[s]", "accesstokens");
+        register(ExprAccessTokenTokenType.class, String.class,"[token]type[s]", "accesstokens");
     }
 
     @Override
     protected String getPropertyName() {
-        return "scope";
+        return "type";
     }
 
     @Override
     public String convert(AccessToken group) {
-        return group.getScope();
+        return group.getToken_type() ;
     }
 
     @Override

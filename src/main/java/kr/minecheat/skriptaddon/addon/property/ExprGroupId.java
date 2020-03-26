@@ -1,8 +1,7 @@
-package kr.minecheat.skriptaddon.addon.group;
+package kr.minecheat.skriptaddon.addon.property;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import kr.minecheat.skriptaddon.data.Group;
-import kr.minecheat.skriptaddon.data.User;
 
 public class ExprGroupId extends SimplePropertyExpression<Group, Number> {
     static {

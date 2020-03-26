@@ -1,22 +1,21 @@
-package kr.minecheat.skriptaddon.addon.record;
+package kr.minecheat.skriptaddon.addon.property;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-import kr.minecheat.skriptaddon.data.Group;
 import kr.minecheat.skriptaddon.data.GroupRecord;
 
-public class ExprRecordId extends SimplePropertyExpression<GroupRecord, Number> {
+public class ExprRecordGroupId extends SimplePropertyExpression<GroupRecord, Number> {
     static {
-        register(ExprRecordId.class, Number.class,"[record]id[s]", "minecheatgrouprecords");
+        register(ExprRecordGroupId.class, Number.class,"groupid[s]", "minecheatgrouprecords");
     }
 
     @Override
     protected String getPropertyName() {
-        return "id";
+        return "groupid";
     }
 
     @Override
     public Number convert(GroupRecord group) {
-        return group.getRecordId();
+        return group.getGroupId();
     }
 
     @Override

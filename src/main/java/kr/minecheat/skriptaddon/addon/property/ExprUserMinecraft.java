@@ -1,21 +1,21 @@
-package kr.minecheat.skriptaddon.addon.user;
+package kr.minecheat.skriptaddon.addon.property;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import kr.minecheat.skriptaddon.data.User;
 
-public class ExprUserEmail extends SimplePropertyExpression<User, String> {
+public class ExprUserMinecraft extends SimplePropertyExpression<User, String> {
     static {
-        register(ExprUserEmail.class, String.class,"public email[s]", "minecheatusers");
+        register(ExprUserMinecraft.class, String.class,"minecraft[s] [uuid[s]]", "minecheatusers");
     }
 
     @Override
     protected String getPropertyName() {
-        return "public email";
+        return "minecraft";
     }
 
     @Override
     public String convert(User user) {
-        return user.getPublicized_email() == null ? "non-public" : user.getPublicized_email() ;
+        return user.getMinecraft() == null ? "not integrated" : user.getMinecraft().toString() ;
     }
 
     @Override
