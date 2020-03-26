@@ -312,7 +312,7 @@ public class ClassInfos {
 
                     @Override
                     public String toVariableNameString(PaginatedGroupRecord groupRecord) {
-                        return "page:"+groupRecord.getPage()+",limit:"+groupRecord.getLimit()+",totalPages:"+groupRecord.getTotalPages()+",items_size:"+groupRecord.getItems().size();
+                        return "page:"+groupRecord.getPage()+",limit:"+groupRecord.getLimit()+",totalPages:"+groupRecord.getTotalPages()+",items_size:"+groupRecord.getItems().size()+",search:"+groupRecord.getSearch();
                     }
 
                     @Override
@@ -321,7 +321,7 @@ public class ClassInfos {
                     }
                     @Override
                     public String getVariableNamePattern() {
-                        return "page:[0-9]+,limit:[0-9]+,totalPages:[0-9]+,items_size:[0-9]+";
+                        return "page:[0-9]+,limit:[0-9]+,totalPages:[0-9]+,items_size:[0-9]+,search:.+";
                     };
                     @Override
                     public PaginatedGroupRecord parse(String s, ParseContext context) {
@@ -335,6 +335,8 @@ public class ClassInfos {
                         fields.putPrimitive("limit", paginatedGroupRecord.getLimit());
                         fields.putPrimitive("totalPages",paginatedGroupRecord.getTotalPages());
                         fields.putObject("items",paginatedGroupRecord.getItems());
+                        fields.putPrimitive("search", paginatedGroupRecord.getSearch());
+                        fields.putPrimitive("searchType", paginatedGroupRecord.getSearchType());
                         return fields;
                     }
 
@@ -344,6 +346,8 @@ public class ClassInfos {
                         pgr.setLimit(fields.getAndRemovePrimitive("limit", Integer.class));
                         pgr.setTotalPages(fields.getAndRemovePrimitive("totalPages", Integer.class));
                         pgr.setItems(fields.getAndRemoveObject("items", List.class));
+                        pgr.setSearch(fields.getAndRemovePrimitive("search", String.class));
+                        pgr.setSearchType(fields.getAndRemovePrimitive("searchType", Integer.class));
                         return pgr;
                     }
 
