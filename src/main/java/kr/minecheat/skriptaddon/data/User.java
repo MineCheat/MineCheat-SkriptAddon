@@ -1,5 +1,6 @@
 package kr.minecheat.skriptaddon.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.UUID;
@@ -10,5 +11,6 @@ public class User {
     private String nickname;
     private String publicized_email;
     private String avatar;
+    @JsonProperty("minecraftUUID")
     private UUID minecraft;
 }

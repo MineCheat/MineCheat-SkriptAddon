@@ -2,6 +2,8 @@ package kr.minecheat.skriptaddon;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.Dependency;
 import org.bukkit.plugin.java.annotation.plugin.Description;
@@ -18,6 +20,9 @@ import java.io.IOException;
 @Website(value = "MineCheat.kr")
 public class MineCheatAddon extends JavaPlugin {
     private SkriptAddon addon;
+    @Getter
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
 
     @Override
     public void onEnable() {
