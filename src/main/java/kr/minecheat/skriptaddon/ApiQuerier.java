@@ -15,7 +15,7 @@ import java.util.Base64;
 import java.util.UUID;
 
 public class ApiQuerier {
-    public static final String API_BaseURL = "http://minecheat.kr:8080/";
+    public static final String API_BaseURL = "http://api.minecheat.kr/";
 
     public static AccessToken authenticate(String clientId, String clientSecret) throws IOException {
         String authorizationHeaderCredentials = clientId + ":" + clientSecret;
